@@ -62,10 +62,16 @@ export const login = asyncHandler(async (req, res) => {
     );
   }
 
+ 
+
   const token = signToken({
     sub: user.id,
     role: user.role,
   });
 
   res.json({ user, token });
+});
+
+ export const me = asyncHandler(async (req, res) => {
+  res.json({ user: req.user });
 });
