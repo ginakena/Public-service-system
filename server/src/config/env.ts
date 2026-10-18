@@ -8,6 +8,8 @@ const schema = z.object({
   JWT_SECRET: z.string().min(8, "JWT_SECRET must be at least 8 characters"),
   JWT_EXPIRES_IN: z.string().default("7d"),
   CLIENT_URL: z.string().default("http://localhost:5173"),
+  ADMIN_EMAIL: z.string().email().optional(),
+ADMIN_PASSWORD: z.string().min(8).optional(),
 });
 
 const parsed = schema.safeParse(process.env);
@@ -16,5 +18,7 @@ if (!parsed.success) {
   console.error("Invalid environment variables:", parsed.error.flatten().fieldErrors);
   process.exit(1);
 }
+
+
 
 export const env = parsed.data;

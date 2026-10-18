@@ -11,7 +11,7 @@ const userSchema = new Schema(
     nationalId: { type: String, required: true, unique: true, trim: true },
     phone: { type: String, required: true, trim: true },
     role: { type: String, enum: ROLES, default: "citizen" },
-    department: { type: String, trim: true }, // officers only
+    // department: { type: String, trim: true }, 
   },
   { timestamps: true }
 );
