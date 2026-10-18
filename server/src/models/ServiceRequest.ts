@@ -1,6 +1,6 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
-export const CATEGORIES = ["streetlight", "water", "garbage", "roads", "sewage", "other"] as const;
+export const CATEGORIES = ["streetlight", "water", "garbage", "roads", "sewage","insecurity", "other"] as const;
 export const STATUSES = ["pending", "in_progress", "resolved"] as const;
 
 export type Category = (typeof CATEGORIES)[number];

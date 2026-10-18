@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CATEGORIES } from "../models/ServiceRequest";
+import { CATEGORIES, STATUSES } from "../models/ServiceRequest";
 
 export const createRequestSchema = z.object({
   category: z.enum(CATEGORIES, { message: `Category must be one of: ${CATEGORIES.join(", ")}` }),
@@ -13,4 +13,17 @@ export const createRequestSchema = z.object({
     .trim()
     .min(10, "Please describe the problem in at least 10 characters")
     .max(1000, "Description must be 1000 characters or less"),
+});
+
+export const listRequestsQuerySchema = z.object({
+  status: z.enum(STATUSES).optional(),
+  category: z.enum(CATEGORIES).optional(),
+  q: z.string().trim().max(100).optional(),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(50).default(10),
+});
+
+export const updateStatusSchema = z.object({
+  status: z.enum(STATUSES, { message: `Status must be one of: ${STATUSES.join(", ")}` }),
+  note: z.string().trim().max(500, "Note must be 1000 characters or less").optional(),
 });
