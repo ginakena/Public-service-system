@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { env } from "./config/env";
 import healthRoutes from "./routes/health.routes";
 import { errorHandler, notFound } from "./middleware/error";
+import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 if (env.NODE_ENV !== "test") app.use(morgan("dev"));
 
 app.use("/api/health", healthRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
