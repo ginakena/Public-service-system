@@ -82,10 +82,10 @@ export default function RegisterPage() {
           name="phone"
           type="tel"
           autoComplete="tel"
+          placeholder="0712345678"
           value={values.phone}
           onChange={handleChange}
           error={errors.phone}
-          hint="e.g. 0712345678"
         />
         <FormField
           label="Password"
@@ -94,8 +94,7 @@ export default function RegisterPage() {
           autoComplete="new-password"
           value={values.password}
           onChange={handleChange}
-          error={errors.password}
-          hint="At least 8 characters, with a letter and a number"
+          error={errors.password}          
         />
         <FormField
           label="Confirm password"
