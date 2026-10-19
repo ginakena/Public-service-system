@@ -24,6 +24,11 @@ export function Layout() {
           <nav className="flex items-center gap-2">
             {user ? (
               <>
+              {user.role === "citizen" && (
+                <Link to="/requests/new" className={`${buttonStyles.primary} hidden sm:inline-flex`}>
+                  Report an issue
+                </Link>
+)}
                 <Link to={homePathFor(user.role)} className="px-2 text-sm font-medium text-slate-700 hover:text-brand-700">
                   {user.role === "admin" ? "Admin dashboard" : "My requests"}
                 </Link>

@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import RequestDetailPage from "./pages/RequestDetailPage";
+import NewRequestPage from "./pages/NewRequestPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
 
         <Route element={<ProtectedRoute roles={["citizen"]} />}>
           <Route path="dashboard" element={<CitizenDashboardPage />} />
+          <Route path="requests/new" element={<NewRequestPage />} />
           <Route path="requests/:id" element={<RequestDetailPage />} />
         </Route>
 
