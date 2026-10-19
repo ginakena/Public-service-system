@@ -2,7 +2,12 @@ import { formatDateTime } from "../lib/format";
 import type { HistoryEntry } from "../types";
 import { StatusBadge } from "./StatusBadge";
 
-export function StatusTimeline({ history }: { history: HistoryEntry[] }) {
+interface StatusTimelineProps {
+  history: HistoryEntry[];
+  showActor?: boolean;
+}
+
+export function StatusTimeline({ history, showActor = false }: StatusTimelineProps) {
   const entries = [...history].reverse(); // newest first
 
   return (
@@ -19,6 +24,9 @@ export function StatusTimeline({ history }: { history: HistoryEntry[] }) {
             <time dateTime={entry.at} className="text-xs text-slate-500">
               {formatDateTime(entry.at)}
             </time>
+            {showActor && typeof entry.by === "object" && (
+              <span className="text-xs text-slate-500">by {entry.by.name}</span>
+            )}
           </div>
           {entry.note && <p className="mt-1 text-sm text-slate-700">{entry.note}</p>}
         </li>
