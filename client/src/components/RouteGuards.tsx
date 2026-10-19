@@ -2,15 +2,9 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { homePathFor } from "../lib/routes";
 import type { Role } from "../types";
-import { Spinner } from "./Spinner";
+import { PageLoader } from "./PageLoader";
 
-function PageLoader() {
-  return (
-    <div className="flex justify-center py-24 text-brand-700">
-      <Spinner className="h-8 w-8" />
-    </div>
-  );
-}
+
 
 // Requires a logged-in user
 export function ProtectedRoute({ roles }: { roles?: Role[] }) {
