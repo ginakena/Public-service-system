@@ -31,3 +31,9 @@ export const COUNTIES = [
 
 export const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+
+export const NEXT_STATUS: Record<Status, Status[]> = {
+  pending: ["in_progress"],
+  in_progress: ["resolved"],
+  resolved: [],
+};

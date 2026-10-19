@@ -1,3 +1,11 @@
+import type { ServiceRequest } from "../types";
+
+
+export const citizenName = (request: ServiceRequest) =>
+  typeof request.citizen === "object" ? request.citizen.name : "-";
+
+
+
 const dateFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
 const dateTimeFormat = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",

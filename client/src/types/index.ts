@@ -43,7 +43,7 @@ export interface HistoryEntry {
 export interface ServiceRequest {
   _id: string;
   refNo: string;
-  citizen: string | { _id: string; name: string; email: string; phone: string };
+  citizen: string | { _id: string; name: string; email: string; phone: string; nationalId?: string };
   category: Category;
   location: RequestLocation;
   description: string;
@@ -73,4 +73,16 @@ export interface DashboardStats {
   byCategory: { category: Category; total: number; open: number; resolved: number }[];
   daily: { date: string; count: number }[];
   avgResolutionHours: number | null;
+}
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface PaginatedRequests {
+  requests: ServiceRequest[];
+  pagination: Pagination;
 }
