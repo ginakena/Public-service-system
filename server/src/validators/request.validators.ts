@@ -1,5 +1,9 @@
 import { z } from "zod";
 import { CATEGORIES, STATUSES } from "../models/ServiceRequest";
+import { env } from "../config/env";
+
+const isOwnCloudinaryUrl = (url: string) =>
+  url.startsWith(`https://res.cloudinary.com/${env.CLOUDINARY_CLOUD_NAME}/`);
 
 export const createRequestSchema = z.object({
   category: z.enum(CATEGORIES, { message: `Category must be one of: ${CATEGORIES.join(", ")}` }),
@@ -13,6 +17,11 @@ export const createRequestSchema = z.object({
     .trim()
     .min(10, "Please describe the problem in at least 10 characters")
     .max(1000, "Description must be 1000 characters or less"),
+      imageUrl: z
+    .string()
+    .url()
+    .refine(isOwnCloudinaryUrl, "Image must be uploaded correctly and hosted on our server")
+    .optional(),
 });
 
 export const listRequestsQuerySchema = z.object({
