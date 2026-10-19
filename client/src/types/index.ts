@@ -53,3 +53,10 @@ export interface ServiceRequest {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CreateRequestInput {
+  category: Category;
+  location: { county: string; area: string; address?: string };
+  description: string;
+  imageUrl?: string;
+}
