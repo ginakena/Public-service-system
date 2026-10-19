@@ -75,7 +75,7 @@ export default function RegisterPage() {
           value={values.nationalId}
           onChange={handleChange}
           error={errors.nationalId}
-          hint="7 or 8 digits"
+          
         />
         <FormField
           label="Phone number"

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
@@ -23,28 +23,45 @@ export default function CitizenDashboardPage() {
   const { user } = useAuth();
   const [requests, setRequests] = useState<ServiceRequest[] | null>(null);
   const [error, setError] = useState("");
-
-  const load = useCallback(async () => {
-    try {
-      const res = await requestsApi.listMine();
-      setRequests(res.requests);
-      setError("");
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Could not load your requests");
-    }
-  }, []);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        const res = await requestsApi.listMine();
+
+        if (!cancelled) {
+          setRequests(res.requests);
+          setError("");
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(
+            err instanceof ApiError
+              ? err.message
+              : "Could not load your requests"
+          );
+        }
+      }
+    }
+
     void load();
-  }, [load]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reloadKey]);
 
   const retry = () => {
     setError("");
     setRequests(null);
-    void load();
+    setReloadKey((key) => key + 1);
   };
 
-  const resolved = requests?.filter((r) => r.status === "resolved").length ?? 0;
+  const resolved =
+    requests?.filter((request) => request.status === "resolved").length ?? 0;
   const total = requests?.length ?? 0;
 
   return (
@@ -52,7 +69,9 @@ export default function CitizenDashboardPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold">My requests</h1>
-          <p className="text-sm text-slate-600">Welcome back, {user?.name}</p>
+          <p className="text-sm text-slate-600">
+            Welcome back, {user?.name}
+          </p>
         </div>
         <Link to="/requests/new" className={buttonStyles.primary}>
           Report an issue
@@ -71,7 +90,9 @@ export default function CitizenDashboardPage() {
       ) : requests.length === 0 ? (
         <div className="mt-6 rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
           <h2 className="font-semibold">No requests yet</h2>
-          <p className="mt-1 text-sm text-slate-600">Report a streetlight, water or garbage issue to get started.</p>
+          <p className="mt-1 text-sm text-slate-600">
+            Report a streetlight, water or garbage issue to get started.
+          </p>
           <Link to="/requests/new" className={`${buttonStyles.primary} mt-4`}>
             Report an issue
           </Link>
