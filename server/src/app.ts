@@ -7,6 +7,7 @@ import healthRoutes from "./routes/health.routes";
 import { errorHandler, notFound } from "./middleware/error";
 import authRoutes from "./routes/auth.routes";
 import requestRoutes from "./routes/request.routes";
+import adminRoutes from "./routes/admin.routes";
 
 const app = express();
 
@@ -18,7 +19,7 @@ if (env.NODE_ENV !== "test") app.use(morgan("dev"));
 app.use("/api/health", healthRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/requests", requestRoutes);
-
+app.use("/api/admin", adminRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
