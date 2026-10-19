@@ -9,6 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import RequestDetailPage from "./pages/RequestDetailPage";
 import NewRequestPage from "./pages/NewRequestPage";
+import AdminRequestPage from "./pages/AdminRequestPage";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
 
         <Route element={<ProtectedRoute roles={["admin"]} />}>
           <Route path="admin" element={<AdminDashboardPage />} />
+          <Route path="admin/requests/:id" element={<AdminRequestPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
