@@ -10,6 +10,9 @@ const schema = z.object({
   CLIENT_URL: z.string().default("http://localhost:5173"),
   ADMIN_EMAIL: z.string().email().optional(),
 ADMIN_PASSWORD: z.string().min(8).optional(),
+CLOUDINARY_CLOUD_NAME: z.string().optional(),
+CLOUDINARY_API_KEY: z.string().optional(),
+CLOUDINARY_API_SECRET: z.string().optional(),
 });
 
 const parsed = schema.safeParse(process.env);
