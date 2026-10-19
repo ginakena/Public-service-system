@@ -27,7 +27,7 @@ export function Layout() {
                 <Link to={homePathFor(user.role)} className="px-2 text-sm font-medium text-slate-700 hover:text-brand-700">
                   {user.role === "admin" ? "Admin dashboard" : "My requests"}
                 </Link>
-                <span className="hidden text-sm text-slate-500 md:inline">{user.name}</span>
+                {/* <span className="hidden text-sm text-slate-500 md:inline">{user.name}</span> */}
                 <button onClick={handleLogout} className={buttonStyles.secondary}>
                   Log out
                 </button>
