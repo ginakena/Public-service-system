@@ -60,3 +60,17 @@ export interface CreateRequestInput {
   description: string;
   imageUrl?: string;
 }
+
+export interface DashboardStats {
+  totals: {
+    total: number;
+    open: number;
+    pending: number;
+    inProgress: number;
+    resolved: number;
+    resolutionRate: number;
+  };
+  byCategory: { category: Category; total: number; open: number; resolved: number }[];
+  daily: { date: string; count: number }[];
+  avgResolutionHours: number | null;
+}

@@ -63,3 +63,7 @@ export const api = {
   post: <T>(path: string, body?: unknown) => request<T>(path, "POST", body),
   patch: <T>(path: string, body?: unknown) => request<T>(path, "PATCH", body),
 };
+
+export function errorMessage(err: unknown, fallback = "Something went wrong. Please try again."): string {
+  return err instanceof ApiError ? err.message : fallback;
+}
