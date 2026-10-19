@@ -1,11 +1,5 @@
 import type { ServiceRequest } from "../types";
 
-
-export const citizenName = (request: ServiceRequest) =>
-  typeof request.citizen === "object" ? request.citizen.name : "-";
-
-
-
 const dateFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
 const dateTimeFormat = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
@@ -27,3 +21,6 @@ export function formatHours(hours: number): string {
   if (hours < 48) return `${hours.toFixed(1)} h`;
   return `${(hours / 24).toFixed(1)} days`;
 }
+
+export const citizenName = (request: ServiceRequest) =>
+  typeof request.citizen === "object" ? request.citizen.name : "-";
