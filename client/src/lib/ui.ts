@@ -7,3 +7,8 @@ export const buttonStyles = {
   light: `${base} bg-white text-brand-800 hover:bg-brand-50`,
   outlineLight: `${base} border border-white/40 text-white hover:bg-white/10`,
 };
+
+export const inputClasses = (hasError: boolean) =>
+  `block w-full rounded-md border px-3 py-2 text-sm shadow-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-600 ${
+    hasError ? "border-red-500" : "border-slate-300"
+  }`;
