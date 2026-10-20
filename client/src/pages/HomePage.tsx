@@ -22,7 +22,7 @@ export default function HomePage() {
         className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
       {/* Overlay keeps the text readable: even tint on phones, fading to the photo on wide screens */}
-      <div className="absolute inset-0 -z-10 bg-brand-800/80 lg:bg-linear-to-r lg:from-brand-800/95 lg:via-brand-800/75 lg:to-brand-800/20" />
+      <div className="absolute inset-0 -z-10 bg-brand-800/40 lg:bg-linear-to-r lg:from-brand-800/70 lg:via-brand-800/40 lg:to-brand-800/10" />
 
         <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24 lg:py-32">
           <h1 className="max-w-2xl text-3xl font-bold leading-tight sm:text-5xl">
