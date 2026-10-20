@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Alert } from "../components/Alert";
-import { AuthCard } from "../components/AuthCard";
+import { AuthLayout } from "../components/AuthLayout";
 import { Button } from "../components/Button";
 import { FormField } from "../components/FormField";
 import { useAuth } from "../hooks/useAuth";
@@ -42,7 +42,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthCard title="Log in" subtitle="Use your email or national ID number to access your account.">
+    <AuthLayout title="Log in" subtitle="Use your email or national ID number to access your account.">
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         {error && <Alert message={error} />}
         <FormField
@@ -70,6 +70,6 @@ export default function LoginPage() {
           Create an account
         </Link>
       </p>
-    </AuthCard>
+    </AuthLayout>
   );
 }

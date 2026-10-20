@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "../components/Alert";
-import { AuthCard } from "../components/AuthCard";
+import { AuthLayout } from "../components/AuthLayout";
 import { Button } from "../components/Button";
 import { FormField } from "../components/FormField";
 import { useAuth } from "../hooks/useAuth";
@@ -63,7 +63,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <AuthCard title="Create your account" subtitle="One account to report issues and track their progress.">
+    <AuthLayout title="Create your account" subtitle="One account to report issues and track their progress.">
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         {formError && <Alert message={formError} />}
         <FormField label="Full name" name="name" autoComplete="name" value={values.name} onChange={handleChange} error={errors.name} />
@@ -115,6 +115,6 @@ export default function RegisterPage() {
           Log in
         </Link>
       </p>
-    </AuthCard>
+    </AuthLayout>
   );
 }
