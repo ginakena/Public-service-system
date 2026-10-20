@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { homePathFor } from "../lib/routes";
 import { buttonStyles } from "../lib/ui";
+import homeImage from "../images/home.jpg";
 
 const steps = [
   { title: "Report", text: "Tell us the category, where it is, and what is wrong. Add a photo if you have one." },
@@ -14,13 +15,21 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="bg-brand-800 text-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-brand-800 text-white">
+        <img
+        src={homeImage}
+        alt="Community service"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
+      />
+      {/* Overlay keeps the text readable: even tint on phones, fading to the photo on wide screens */}
+      <div className="absolute inset-0 -z-10 bg-brand-800/80 lg:bg-linear-to-r lg:from-brand-800/95 lg:via-brand-800/75 lg:to-brand-800/20" />
+
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24 lg:py-32">
           <h1 className="max-w-2xl text-3xl font-bold leading-tight sm:text-5xl">
             Report public service issues and follow them to resolution
           </h1>
           <p className="mt-4 max-w-xl text-brand-100">
-            Broken streetlights, water problems, uncollected garbage. Report them in minutes and get updates.
+            Broken streetlights, water problems, uncollected garbage. Report them in minutes and see what happens next.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             {user ? (
@@ -35,10 +44,10 @@ export default function HomePage() {
                 <Link to="/login" className={buttonStyles.outlineLight}>
                   Log in
                 </Link>
-              </>
+        </>
             )}
+            </div>
           </div>
-        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12">
